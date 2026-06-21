@@ -6,11 +6,11 @@
 
 ASOCOperatorPawn::ASOCOperatorPawn()
 {
-	GetCapsuleComponent()->InitCapsuleSize(34.0f, 88.0f);
+	GetCapsuleComponent()->InitCapsuleSize(22.0f, 114.0f);
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("OperatorCamera"));
 	Camera->SetupAttachment(GetCapsuleComponent());
-	Camera->SetRelativeLocation(FVector(0.0f, 0.0f, 64.0f));
+	Camera->SetRelativeLocation(FVector(0.0f, 0.0f, 99.0f));
 	Camera->bUsePawnControlRotation = true;
 
 	bUseControllerRotationYaw = true;
@@ -30,9 +30,9 @@ void ASOCOperatorPawn::BeginPlay()
 {
 	Super::BeginPlay();
 
-	if (GetActorLocation().Z < 80.0f)
+	if (GetActorLocation().Z < 122.0f)
 	{
-		SetActorLocation(FVector(GetActorLocation().X, GetActorLocation().Y, 96.0f), false, nullptr, ETeleportType::TeleportPhysics);
+		SetActorLocation(FVector(GetActorLocation().X, GetActorLocation().Y, 122.0f), false, nullptr, ETeleportType::TeleportPhysics);
 	}
 
 	if (UCharacterMovementComponent* Movement = GetCharacterMovement())
