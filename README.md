@@ -11,6 +11,8 @@ Scenario Operations Console is a UE 5.8 C++ gameplay systems demo focused on reu
 
 [![Scenario Operations Console gameplay demo](Media/GitHub/ScenarioOperationsConsoleDemoPreview.gif)](Media/GitHub/ScenarioOperationsConsoleDemo.mp4)
 
+[Download the Windows demo build](https://github.com/Zoruahful/ScenarioOperationsConsole/releases/tag/v1.0.0-demo)
+
 | CONSOLE | VALIDATION | REPORT |
 | --- | --- | --- |
 | ![Console overview](Media/GitHub/Screenshots/01_console_overview.jpg) | ![Runtime validation state](Media/GitHub/Screenshots/02_runtime_validation.jpg) | ![Report generated state](Media/GitHub/Screenshots/03_report_generated.jpg) |
