@@ -24,6 +24,16 @@ This project demonstrates reusable Unreal plugin integration, scenario validatio
 - Scenario validation, runtime event feed, warning acknowledgement, and report completion state
 - Replay support with `R` reset
 
+## Demo Media
+
+[Watch the gameplay demo](Media/GitHub/ScenarioOperationsConsoleDemo.mp4)
+
+![Console overview](Media/GitHub/Screenshots/01_console_overview.jpg)
+
+![Runtime validation state](Media/GitHub/Screenshots/02_runtime_validation.jpg)
+
+![Report generated state](Media/GitHub/Screenshots/03_report_generated.jpg)
+
 ## Demo Flow
 
 1. Approach the console.
