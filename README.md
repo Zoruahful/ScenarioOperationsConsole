@@ -1,42 +1,25 @@
 # Scenario Operations Console
 
-Scenario Operations Console is a standalone Unreal Engine 5.8 project that consumes a reusable mission scenario runtime plugin. The demo presents a compact operator console where the player validates a scenario, runs a short simulation sequence, acknowledges a runtime warning, and generates a completion report.
+Scenario Operations Console is a UE 5.8 C++ gameplay systems demo focused on reusable plugin integration, runtime scenario validation, operator-facing HUD feedback, and structured event reporting. The demo presents a compact console environment where the player validates a scenario, runs a short simulation sequence, acknowledges a runtime warning, and generates a completion report.
 
-## What This Demonstrates
+- **Status:** Playable operations-console demo complete
+- **Engine:** Unreal Engine 5.8
+- **Language:** C++
+- **Focus:** Reusable Unreal plugins, mission / quest runtime systems, validation UI, event feeds, packaged demo workflow
 
-- Reusing a C++ Unreal plugin from another host project
-- Parsing and validating a structured scenario contract at runtime
-- Driving an interactive objective sequence from mission state
-- Presenting validation, progress, warnings, and completion data through an in-game HUD
-- Packaging a small playable Windows demo from a source-controlled UE project
+## Demo
 
-## Purpose
+[![Scenario Operations Console gameplay demo](Media/GitHub/ScenarioOperationsConsoleDemoPreview.gif)](Media/GitHub/ScenarioOperationsConsoleDemo.mp4)
 
-This project demonstrates reusable Unreal plugin integration, scenario validation, runtime event visibility, and tool-style UI design. The experience is intentionally generic so it can apply to simulation, training, gameplay, quest, or internal tools workflows.
-
-## Demo Features
-
-- Standalone Unreal Engine 5.8 C++ host project
-- Imported reusable `MissionScenarioRuntime` plugin
-- First-person capsule operator pawn
-- Outdoor console test area with readable HUD and world labels
-- Proximity-based console interaction
-- Scenario validation, runtime event feed, warning acknowledgement, and report completion state
-- Replay support with `R` reset
-
-## Demo Media
-
-[Watch the gameplay demo](Media/GitHub/ScenarioOperationsConsoleDemo.mp4)
-
-![Console overview](Media/GitHub/Screenshots/01_console_overview.jpg)
-
-![Runtime validation state](Media/GitHub/Screenshots/02_runtime_validation.jpg)
-
-![Report generated state](Media/GitHub/Screenshots/03_report_generated.jpg)
+| CONSOLE | VALIDATION | REPORT |
+| --- | --- | --- |
+| ![Console overview](Media/GitHub/Screenshots/01_console_overview.jpg) | ![Runtime validation state](Media/GitHub/Screenshots/02_runtime_validation.jpg) | ![Report generated state](Media/GitHub/Screenshots/03_report_generated.jpg) |
 
 ## Demo Flow
 
-1. Approach the console.
+Open the project, press Play, and complete the console sequence:
+
+1. Approach the operations console.
 2. Press `E` to validate the scenario contract.
 3. Press `E` to run the simulation.
 4. Press `E` to monitor the objective route.
@@ -44,33 +27,67 @@ This project demonstrates reusable Unreal plugin integration, scenario validatio
 6. Press `E` to generate the completion report.
 7. Press `R` to reset and replay the sequence.
 
-## Controls
+The HUD shows the current phase, objective, validation status, warning state, event feed, and report status.
 
-- `WASD`: Move
-- `Mouse`: Look
-- `E`: Interact with the console
-- `R`: Reset the demo sequence
+## Engineering Highlights
+
+- **Reusable plugin integration:** The host project imports and consumes `MissionScenarioRuntime` instead of keeping mission logic only in the game module.
+- **Structured scenario contract:** The demo scenario is represented as JSON and parsed into C++ runtime state.
+- **Operator interaction loop:** Player proximity and `E` input drive validation, simulation, monitoring, warning acknowledgement, and report generation.
+- **Runtime HUD feedback:** `ASOCOperationsHUD` presents scenario progress, validation status, warnings, and event history during normal Play.
+- **Code-built demo scene:** `ASOCOperationsDemoActor` constructs the playable console area in C++ for clear review and repeatable setup.
+- **Packaged-demo workflow:** The project has been validated through a Windows package build for tester-friendly review.
 
 ## Project Structure
 
 | Path | Purpose |
 | --- | --- |
-| `Source/ScenarioOperationsConsole` | Host project gameplay, pawn, HUD, and demo scene code. |
-| `Plugins/MissionScenarioRuntime` | Reusable runtime plugin consumed by this project. |
-| `Content/Maps/OperationsConsole.umap` | Playable demo level. |
-| `Config` | Project maps, input, and gameplay defaults. |
+| `ScenarioOperationsConsole.uproject` | UE 5.8 host project. |
+| `Content/Maps/OperationsConsole.umap` | Playable operations-console demo map. |
+| `Source/ScenarioOperationsConsole` | Host project gameplay, pawn, HUD, controller, and demo scene code. |
+| `Plugins/MissionScenarioRuntime/Source/MissionScenarioRuntime` | Reusable runtime mission system plugin. |
+| `Config/DefaultEngine.ini` | Startup/default map configuration. |
+| `Config/DefaultInput.ini` | Project input defaults. |
+| `Media/GitHub` | README demo video, GIF preview, and screenshots. |
 
-## Requirements
+## Key Code
+
+- `SOCOperationsDemoActor.cpp`: scenario contract, demo scene construction, operation steps, event feed, and report state.
+- `SOCOperationsPlayerController.cpp`: console proximity checks and `E` / `R` interaction routing.
+- `SOCOperatorPawn.cpp`: capsule-style player movement and camera behavior.
+- `SOCOperationsHUD.cpp`: screen-space operations, validation, and event-feed panels.
+- `MissionScenarioRuntimeLibrary.cpp`: JSON parsing and validation entry points.
+- `MissionScenarioInstance.cpp`: reusable mission lifecycle and event log runtime.
+
+## How to Run
+
+Requirements:
 
 - Unreal Engine 5.8
 - Visual Studio 2022 with C++ game development tools
+- Git LFS enabled before cloning
 
-## Open In Unreal
+Clone:
 
-Open `ScenarioOperationsConsole.uproject` with Unreal Engine 5.8.
+```bash
+git lfs install
+git clone https://github.com/Zoruahful/ScenarioOperationsConsole.git
+```
 
-The default map is `Content/Maps/OperationsConsole`.
+Open:
 
-## Build Notes
+```text
+ScenarioOperationsConsole.uproject
+```
 
-The repository is intended to store source project files only. Generated Unreal folders such as `Binaries`, `Intermediate`, `Saved`, `DerivedDataCache`, and packaged release output are excluded from source control.
+Build target:
+
+```powershell
+& 'Path\To\UE_5.8\Engine\Build\BatchFiles\Build.bat' ScenarioOperationsConsoleEditor Win64 Development 'Path\To\ScenarioOperationsConsole\ScenarioOperationsConsole.uproject' -WaitMutex -FromMsBuild
+```
+
+Then open `/Game/Maps/OperationsConsole` and press Play.
+
+## Scope
+
+This repository is intentionally small. It demonstrates a standalone project consuming a reusable scenario runtime plugin, not a full game. The current implementation focuses on durable C++ systems, readable operator feedback, and a short end-to-end demo path that can be inspected in code and played in editor.
