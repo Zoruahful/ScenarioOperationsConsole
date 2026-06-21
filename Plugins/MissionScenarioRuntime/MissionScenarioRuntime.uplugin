@@ -1,0 +1,19 @@
+{
+	"FileVersion": 3,
+	"Version": 1,
+	"VersionName": "0.1.0",
+	"FriendlyName": "Mission Scenario Runtime",
+	"Description": "Reusable runtime scenario state and event-log foundation for Unreal Engine projects.",
+	"Category": "Scenario Systems",
+	"CreatedBy": "Joshua Acevedo",
+	"CanContainContent": false,
+	"IsBetaVersion": true,
+	"Installed": false,
+	"Modules": [
+		{
+			"Name": "MissionScenarioRuntime",
+			"Type": "Runtime",
+			"LoadingPhase": "Default"
+		}
+	]
+}

@@ -1,0 +1,36 @@
+# Unreal generated files
+Binaries/
+Build/
+DerivedDataCache/
+Intermediate/
+Saved/
+Config/DefaultEditorPerProjectUserSettings.ini
+Content/Collections/
+Content/Developers/
+.vs/
+.vscode/
+*.sln
+*.VC.db
+*.opensdf
+*.sdf
+*.suo
+*.user
+*.log
+
+# Local release/package output
+_LocalReleases/
+Builds/
+
+# Plugin generated files
+Plugins/*/Binaries/
+Plugins/*/Intermediate/
+
+# Local/internal workflow files
+AGENTS.md
+**/AGENTS.md
+.codex/
+.cursor/
+.gemini/
+.mcp.json
+Docs/
+Scripts/
